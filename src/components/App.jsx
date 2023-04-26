@@ -4,15 +4,14 @@ import FeedbackButtons from './FeedbackButtons/FeedbackButtons';
 import Statistic from './Statistics/Statistic';
 import Notification from './Notification/Notification';
 import Section from 'components/Section/Section'
+import css from './App.module.css';
 
 export function App(){
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  console.log(good,neutral,bad);
 
       const onClickFunc = value => {
-        // console.log(good,neutral,bad);
         switch (value) {
           case 'good':
             setGood(prevState => prevState + 1);
@@ -29,19 +28,6 @@ export function App(){
           default:
             return;
         }
-        // switch(value){
-        //   case 'good':
-        //     setGood(value + 1)
-        //     break;
-        //     case 'neutral':
-        //     setNeutral(prevNeutral => prevNeutral + 1)
-        //     break;
-        //     case 'bad':
-        //     setBad(prevBad => prevBad + 1)
-        //     break;
-        //     default: 
-        //     return;
-        // }
       }
       const countTotalFeedback =() =>{
         return good + neutral + bad;
@@ -50,20 +36,10 @@ export function App(){
         return Math.round(good / countTotalFeedback() * 100)
       };
 
-        // const {good, neutral, bad} = this.state;
         const total = countTotalFeedback();
         const positivePercentage = countPositiveFeedbackPercentage();
         return (
-          <div
-            // style={{
-            //   height: '100vh',
-            //   display: 'flex',
-            //   justifyContent: 'center',
-            //   alignItems: 'center',
-            //   fontSize: 40,
-            //   color: '#010101'
-            // }}
-          >
+          <div className={css.container}>
             <Section title="Please leave feedback">
             <FeedbackButtons options={['good', 'neutral', 'bad']} onLeaveFeedback={onClickFunc}/>
             <Section title="Statistics">
